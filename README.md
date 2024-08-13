@@ -1,4 +1,6 @@
 # SQL Playground: Building a TV Show Review Database 📺🎉
+![Gif Banner](https://github.com/user-attachments/assets/a7258f3b-ded9-48bc-aca0-e7d782916de8)
+
 
 ## Description:
 Welcome to the **SQL Playground!** 🎢 This project is your chance to dive into the world of SQL, and flex those database muscles 💪. Whether you're a newbie just starting out or a seasoned pro looking to brush up on your skills, this open-source project has got you covered.
