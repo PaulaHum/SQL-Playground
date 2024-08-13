@@ -1,6 +1,6 @@
 # SQL Playground: Building a TV Show Review Database 📺🎉
 
-## Project Description:
+## Description:
 Welcome to the **SQL Playground!** 🎢 This project is your chance to dive into the world of SQL, and flex those database muscles 💪. Whether you're a newbie just starting out or a seasoned pro looking to brush up on your skills, this open-source project has got you covered.
 
 We're building a TV Show Review Database in MySQL, where you can track your favorite series and see what others think about them. The database will include tables for **reviewers**, **series**, and **reviews**, all connected in a **Many-to-Many relationship**, making it the perfect playground to test your SQL queries. 😎
@@ -14,7 +14,7 @@ With this project, you'll get hands-on experience:
 
 All you need is MySQL (Terminal or Workbench, your choice!), a sense of adventure, and a love for good TV shows. Let's get started!
 
-<h3>Project Steps:</h3>
+## Project Steps: 
 1. Set up a brand new Database using Terminal and if you wish, a MySQL Workbench
 
  ```
@@ -82,12 +82,12 @@ All you need is MySQL (Terminal or Workbench, your choice!), a sense of adventur
 	('Seinfeld', 1989, 'Comedy'),
 	('Stranger Things', 2016, 'Drama');
     ```
-<img width="362" alt="Bob's Burgers" src="https://github.com/user-attachments/assets/3e208d99-b705-4f11-9bc2-77d4172d40e6">
+   <img width="362" alt="Bob's Burgers" src="https://github.com/user-attachments/assets/3e208d99-b705-4f11-9bc2-77d4172d40e6">
 
   * Insert data into the `reviewers` table:
 
-```
-INSERT INTO reviewers (first_name, last_name) VALUES
+    ```
+    INSERT INTO reviewers (first_name, last_name) VALUES
 	('Krzysztof', 'Rutkowski'),
 	('Jaroslaw', 'Jakimowicz'),
 	('Kim', 'Kardashian'),
@@ -95,12 +95,12 @@ INSERT INTO reviewers (first_name, last_name) VALUES
 	('Colt', 'Steele'),
 	('Kanye', 'West'),
 	('Napoleon', 'Bonaparte')
-```
-<img width="203" alt="mysql SELECT  FROM reviewers;" src="https://github.com/user-attachments/assets/a3d0201f-345e-4311-adfe-c18a95c47b33">
+    ```
+     <img width="203" alt="mysql SELECT  FROM reviewers;" src="https://github.com/user-attachments/assets/a3d0201f-345e-4311-adfe-c18a95c47b33">
 
  * Insert data into the `reviews` table:
 
-```
+   ```
 	INSERT INTO reviews(series_id, reviewer_id, rating) VALUES
 	(1,1,8.0),(1,2,7.5),(1,3,8.5),(1,4,7.7),(1,5,8.9),
 	(2,1,8.1),(2,4,6.0),(2,3,8.0),(2,6,8.4),(2,5,9.9),
@@ -114,7 +114,36 @@ INSERT INTO reviewers (first_name, last_name) VALUES
 	(10,5,9.9),
 	(13,3,8.0),(13,4,7.2),
 	(14,2,8.5),(14,3,8.9),(14,4,8.9);
-```
-<img width="265" alt="from reviews" src="https://github.com/user-attachments/assets/8d7d0bb4-8efc-4d9a-a2c0-3b69c5f2b104">
+   ```
+   
+    <img width="265" alt="from reviews" src="https://github.com/user-attachments/assets/3da813ee-45dd-4e19-a8c7-ec87410465b9">
+
+5. Let’s try writing some queries using our three tables
+   
+  * Select Title and Rating from `series` and `reviews` tables
+  
+    ```
+    SELECT 
+    title, rating
+    FROM
+    series
+        JOIN
+    reviews ON series.id = reviews.series_id;
+    ```
+ * Select Title and Rating (rounded up to 2 digits after coma) from `series` and `reviews` tables. Rating should appear as `avg_rating`.  Let’s group it by the Title and order by the avg_rating
+   ```
+   SELECT 
+    title, ROUND(AVG(rating), 2) AS avg_rating
+   FROM
+    series
+        JOIN
+    reviews ON series.id = reviews.series_id
+   GROUP BY title
+   ORDER BY avg_rating;
+   ```
+
+
+
+
 
 
