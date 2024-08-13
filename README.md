@@ -203,6 +203,33 @@ _We may also do it other way around…_
     
 	SELECT * FROM full_reviews;
       ```
+* you can find a new virtual table created - full_reviews
+
+  <img width="175" alt="(mysql SHOW TABLES;" src="https://github.com/user-attachments/assets/39407aea-03e7-48f2-8bbd-98eb75d94026">
+
+7. Using the new view - full_reviews, select all titles with more than 1 review. Carry out two aggregate functions on rating field - Average rating and Count of rating
+   ```
+   SELECT
+   title,
+   AVG(rating),
+   COUNT(rating) AS review_count
+   FROM full_reviews
+   GROUP BY title HAVING COUNT(rating) > 1;
+   ```
+8. Select title and average rating of each title, group it by title. At the end add the overall average using ROLL UP
+   ```
+   SELECT
+   title, AVG(rating)
+   FROM
+   full_reviews
+   GROUP BY title WITH ROLLUP;
+   ```
+##
+🎉 **And that's it!** You're all set to explore and practice SQL with this fun TV Show Review Database. Happy querying!
+
+ 
+   
+
 
 
 
