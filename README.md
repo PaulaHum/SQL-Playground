@@ -122,25 +122,87 @@ All you need is MySQL (Terminal or Workbench, your choice!), a sense of adventur
    
   * Select Title and Rating from `series` and `reviews` tables
   
-    ```
-    SELECT 
-    title, rating
-    FROM
-    series
-        JOIN
-    reviews ON series.id = reviews.series_id;
-    ```
- * Select Title and Rating (rounded up to 2 digits after coma) from `series` and `reviews` tables. Rating should appear as `avg_rating`.  Let’s group it by the Title and order by the avg_rating
-   ```
+  ```
    SELECT 
-    title, ROUND(AVG(rating), 2) AS avg_rating
+   title, rating
    FROM
     series
-        JOIN
+      JOIN
+    reviews ON series.id = reviews.series_id;
+  ```
+ * Select Title and Rating (rounded up to 2 digits after coma) from `series` and `reviews` tables. Rating should appear as `avg_rating`.  Let’s group it by the Title and order by the avg_rating
+ ```
+  SELECT 
+    title, ROUND(AVG(rating), 2) AS avg_rating
+  FROM
+    series
+      JOIN
     reviews ON series.id = reviews.series_id
-   GROUP BY title
-   ORDER BY avg_rating;
-   ```
+  GROUP BY title
+  ORDER BY avg_rating;
+  ```
+ * Show all titles which are unrated (have no rating/haven’t been reviewed)
+  ```
+  SELECT 
+    title AS unreviewed_series
+  FROM
+    series
+        LEFT JOIN
+    reviews ON series.id = reviews.series_id
+  WHERE
+    rating IS NULL;
+  ```
+_We may also do it other way around…_
+
+  ```
+  SELECT 
+    title AS unreviewed_series
+  FROM
+    reviews
+        RIGHT JOIN
+    series ON series.id = reviews.series_id
+  WHERE
+    rating IS NULL;
+  ```
+* Pull the data from all three tables: Title, Rating, and combination of first and last name of the reviewer
+  ```
+  SELECT 
+    title,
+    rating,
+    CONCAT(first_name, ' ', last_name) AS reviewer
+  FROM
+    reviews
+        INNER JOIN
+    series ON reviews.series_id = series.id
+        INNER JOIN
+    reviewers ON reviews.reviewer_id = reviewers.id;
+    ```
+  <img width="526" alt="rating reviewer" src="https://github.com/user-attachments/assets/e49a9ead-360d-45be-8acc-1d4242a92c29">
+
+  * Let’s create a new view. By using this “virtual table” we will be able to simplify our queries moving forward
+    ```
+    -- INSTEAD OF TYPING THIS QUERY ALL THE TIME...
+
+	SELECT
+	title, released_year, genre, rating, first_name, last_name
+	FROM
+	reviews
+	JOIN
+	series ON series.id = reviews.series_id
+	JOIN
+	reviewers ON reviewers.id = reviews.reviewer_id;
+		 
+    -- WE CAN CREATE A VIEW:
+
+	CREATE VIEW full_reviews AS
+	SELECT title, released_year, genre, rating, first_name, last_name FROM reviews
+	JOIN series ON series.id = reviews.series_id
+	JOIN reviewers ON reviewers.id = reviews.reviewer_id;
+		 
+    -- NOW WE CAN TREAT THAT VIEW AS A VIRTUAL TABLE
+    
+	SELECT * FROM full_reviews;
+      ```
 
 
 
