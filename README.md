@@ -1,4 +1,4 @@
-# 🛝 SQL Playground: Building a TV Show Review Database 📺
+# 📺 SQL Playground: Building a TV Show Review Database 🛝
 ![Gif Banner](https://github.com/user-attachments/assets/a7258f3b-ded9-48bc-aca0-e7d782916de8)
 
 
