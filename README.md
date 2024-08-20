@@ -78,7 +78,7 @@ INSERT INTO series (title, released_year, genre) VALUES
      ('Seinfeld', 1989, 'Comedy'),
      ('Stranger Things', 2016, 'Drama');
 ```
-   <img width="362" alt="Bob's Burgers" src="https://github.com/user-attachments/assets/3e208d99-b705-4f11-9bc2-77d4172d40e6">
+<img width="319" alt="Screenshot 2024-08-20 at 22 25 44" src="https://github.com/user-attachments/assets/303aa9e4-d723-4e70-8a8a-89fcf655d2ca">
 
 * Insert data into the `reviewers` table:
 ```
