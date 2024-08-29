@@ -216,7 +216,7 @@ FROM
 GROUP BY title
 HAVING COUNT(rating) > 1;
 ```
-8. Select title and average rating of each title, group it by title. At the end add the overall average using ROLL UP
+8. Select **title** and **average rating** of each title, **group it** by title. At the end add the overall average using **ROLL UP**
 ```
 SELECT
    title, AVG(rating)
@@ -224,6 +224,43 @@ FROM
    full_reviews
 GROUP BY title WITH ROLLUP;
 ```
+9. Show **average rating** for each **genre**
+```
+SELECT 
+    genre, ROUND(AVG(rating), 1) AS average_rating
+FROM
+    full_reviews
+GROUP BY genre;
+```
+<img width="187" alt="Screenshot 2024-08-29 at 12 47 20" src="https://github.com/user-attachments/assets/6b9fbd97-649d-44f9-aa27-f2165ab7018a">
+
+
+10. Using **Window functions** show table with **title, genre, rating** along the average rating of each genre as well as the overall average rating 
+```
+SELECT 
+    title,
+    genre, 
+    rating,
+    AVG(rating) OVER (PARTITION BY genre) AS avg_rating_by_genre,
+    AVG(rating) OVER () AS overall_avg_rating
+FROM
+    full_reviews;
+```
+<img width="501" alt="Screenshot 2024-08-29 at 12 57 14" src="https://github.com/user-attachments/assets/c637045d-cbce-4e22-966a-5ab4c96f5774">
+
+11. **Order** the data **descending** by rating
+```
+SELECT 
+    title,
+    genre, 
+    rating,
+    AVG(rating) OVER (PARTITION BY genre ORDER BY rating DESC) AS avg_rating_by_genre,
+    AVG(rating) OVER () AS overall_avg_rating
+FROM
+    full_reviews;
+```
+<img width="502" alt="Screenshot 2024-08-29 at 13 04 55" src="https://github.com/user-attachments/assets/0d713270-923d-4ffb-8bfa-1311a5bc2480">
+
 ##
 🎉 **And that's it!** You're all set to explore and practice SQL with this fun TV Show Review Database. Happy querying!
 
