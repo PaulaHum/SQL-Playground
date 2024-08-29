@@ -288,6 +288,9 @@ FROM
 ##
 🎉 **And that's it!** You're all set to explore and practice SQL with this fun TV Show Review Database. Happy querying!
 
+![Gif Banner](https://github.com/user-attachments/assets/6187b271-733a-4a8a-bd45-bbb07d0ac556)
+
+
  
    
 
