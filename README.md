@@ -122,6 +122,8 @@ FROM
         JOIN
     reviews ON series.id = reviews.series_id;
 ```
+<img width="171" alt="Screenshot 2024-08-29 at 13 44 11" src="https://github.com/user-attachments/assets/03a445da-4e6d-4b50-938e-59d241e45278">
+
 * Select Title and Rating (rounded up to 2 digits after coma) from `series` and `reviews` tables. Rating should appear as `avg_rating`.  Let’s group it by the Title and order by the avg_rating
 ```
 SELECT 
@@ -133,6 +135,8 @@ FROM
 GROUP BY title
 ORDER BY avg_rating;
 ```
+<img width="199" alt="Screenshot 2024-08-29 at 13 44 34" src="https://github.com/user-attachments/assets/22e8f385-c70a-4156-86c1-ec7615081238">
+
 * Show all titles which are unrated (have no rating/haven’t been reviewed)
 ```
 SELECT 
@@ -144,6 +148,8 @@ FROM
 WHERE
     rating IS NULL;
 ```
+<img width="132" alt="Screenshot 2024-08-29 at 13 44 55" src="https://github.com/user-attachments/assets/8b3f649d-ff20-414d-bd2d-6c21eca870fc">
+
 _We may also do it other way around…_
 
 ```
@@ -203,6 +209,8 @@ CREATE VIEW full_reviews AS
 ```
 SELECT * FROM full_reviews;
 ```
+<img width="499" alt="Screenshot 2024-08-29 at 13 46 21" src="https://github.com/user-attachments/assets/9ab78f0d-6ce4-46ea-a3ec-9b7b509ee55b">
+
 * you can find a new virtual table created - full_reviews
 
 <img width="175" alt="(mysql SHOW TABLES;" src="https://github.com/user-attachments/assets/39407aea-03e7-48f2-8bbd-98eb75d94026">
@@ -216,6 +224,8 @@ FROM
 GROUP BY title
 HAVING COUNT(rating) > 1;
 ```
+<img width="292" alt="Screenshot 2024-08-29 at 13 47 09" src="https://github.com/user-attachments/assets/e187e3ea-eb37-4d20-8b4c-5d01e50561c9">
+
 8. Select **title** and **average rating** of each title, **group it** by title. At the end add the overall average using **ROLL UP**
 ```
 SELECT
@@ -224,6 +234,8 @@ FROM
    full_reviews
 GROUP BY title WITH ROLLUP;
 ```
+<img width="205" alt="Screenshot 2024-08-29 at 13 47 46" src="https://github.com/user-attachments/assets/0e06c0fa-a565-40b3-b759-377e8313bff2">
+
 9. Show **average rating** for each **genre**
 ```
 SELECT 
@@ -260,6 +272,18 @@ FROM
     full_reviews;
 ```
 <img width="502" alt="Screenshot 2024-08-29 at 13 04 55" src="https://github.com/user-attachments/assets/0d713270-923d-4ffb-8bfa-1311a5bc2480">
+
+12. Again, using **Window functions** show table with **title, genre, rating** and **RANK** these by **rating** in descending order. Name the new column **genre_rating_rank**. Also, partition the data by the **genre**
+```
+SELECT 
+    title,
+    genre, 
+    rating,
+    RANK() OVER (PARTITION BY genre ORDER BY rating DESC) AS genre_rating_rank
+FROM
+    full_reviews;
+```
+<img width="368" alt="Screenshot 2024-08-29 at 13 38 11" src="https://github.com/user-attachments/assets/5c82ae67-b9f1-4366-bebe-05a3ff89c9e7">
 
 ##
 🎉 **And that's it!** You're all set to explore and practice SQL with this fun TV Show Review Database. Happy querying!
