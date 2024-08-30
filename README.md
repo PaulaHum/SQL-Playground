@@ -12,12 +12,13 @@ With this project, you'll get hands-on experience:
 * Creating and managing databases 🛠️
 * Crafting complex queries 🚀
 * Experimenting with relationships between tables 💡
-* Learning to create views to simplify your work 💻
+* Learning to create views to simplify your work 💻\
+* Performing calculations across a set of table rows using Window functions
 
 All you need is MySQL (Terminal or Workbench, your choice!), a sense of adventure, and a love for good TV shows. Let's get started!
 
 ## Project Steps: 
-1. Set up a brand new Database using Terminal and if you wish, a MySQL Workbench
+1. Set up a brand new Database using Terminal or if you wish, a MySQL Workbench
 ```
 CREATE DATABASE tv_database;
 ```
